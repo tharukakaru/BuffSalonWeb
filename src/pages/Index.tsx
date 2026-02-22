@@ -1,5 +1,4 @@
 "use client";
-
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -7,7 +6,7 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import SalonsSection from "@/components/SalonsSection";
 import Footer from "@/components/Footer";
 
-export default function Page() {
+const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -20,4 +19,6 @@ export default function Page() {
       <Footer />
     </div>
   );
-}
+};
+
+export default Index;
