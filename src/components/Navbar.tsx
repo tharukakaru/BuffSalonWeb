@@ -16,7 +16,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/context/cart";
+import { useCart } from "@/context/old_cart";
 import { useAuth } from "@/context/auth";
 
 const navLinks = [

@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
-import PricingPage from "@/pages/PricingPage";
+import PricingPage from "@/pages_old/PricingPage";
 import Footer from "@/components/Footer";
 
 export default function Page() {

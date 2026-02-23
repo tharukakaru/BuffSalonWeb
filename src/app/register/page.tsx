@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 import { Scissors } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
   const { login } = useAuth();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,13 +20,22 @@ export default function LoginPage() {
           <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-accent-gold to-accent-gold/70 flex items-center justify-center mb-3">
             <Scissors className="h-6 w-6 text-background" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">Welcome Back</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Create Account</h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Sign in to continue to BUFF SALON
+            Join BUFF SALON in seconds
           </p>
         </div>
 
         <div className="space-y-4">
+          <div>
+            <label className="text-sm text-muted-foreground">Full Name</label>
+            <input
+              className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
           <div>
             <label className="text-sm text-muted-foreground">Email</label>
             <input
@@ -53,17 +63,17 @@ export default function LoginPage() {
               router.push("/dashboard");
             }}
           >
-            Sign In
+            Sign Up
           </Button>
         </div>
 
         <div className="mt-6 text-center text-xs text-muted-foreground">
-          Don't have an account?{" "}
+          Already have an account?{" "}
           <span
             className="text-accent-gold cursor-pointer"
-            onClick={() => router.push("/register")}
+            onClick={() => router.push("/login")}
           >
-            Sign up
+            Sign in
           </span>
         </div>
       </div>
