@@ -88,7 +88,11 @@ const SalonsSection = () => {
                 <span className="inline-block bg-secondary text-secondary-foreground text-xs font-body font-medium px-3 py-1 rounded-full mb-4">
                   {salon.specialty}
                 </span>
-                <Button variant="hero" size="sm" className="w-full rounded-full">
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="w-full rounded-full bg-accent-gold text-accent-gold-foreground hover:bg-accent-gold/90"
+                >
                   Book Now
                 </Button>
               </div>
@@ -102,7 +106,11 @@ const SalonsSection = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Button asChild variant="hero-outline" className="rounded-full px-8">
+          <Button
+            asChild
+            variant="outline"
+            className="rounded-full px-8 border-accent-gold/40 text-foreground hover:bg-accent-gold/10"
+          >
             <Link href="/salons">
               View All Salons <ArrowRight className="ml-2 w-4 h-4" />
             </Link>

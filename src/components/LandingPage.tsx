@@ -184,7 +184,7 @@ export default function LandingPage() {
                 Sign In
               </Button>
               <Button
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/register")}
                 className="flex-1 bg-accent-gold text-accent-gold-foreground text-sm"
               >
                 Get Started
@@ -324,7 +324,19 @@ export default function LandingPage() {
               <motion.div
                 key={f.title}
                 variants={item}
-                className={`relative rounded-2xl border border-border/50 bg-gradient-to-br ${f.gradient} p-6 overflow-hidden`}
+                role="button"
+                tabIndex={0}
+                onClick={() => {
+                  if (f.title === "Beauty Shop") router.push("/shop");
+                  if (f.title === "Find Nearby Salons") router.push("/salons");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    if (f.title === "Beauty Shop") router.push("/shop");
+                    if (f.title === "Find Nearby Salons") router.push("/salons");
+                  }
+                }}
+                className={`relative rounded-2xl border border-border/50 bg-gradient-to-br ${f.gradient} p-6 overflow-hidden cursor-pointer hover:border-accent-gold/40 transition-colors`}
               >
                 <div className="absolute inset-0 bg-card/30 backdrop-blur-[2px]" />
                 <div className="relative">

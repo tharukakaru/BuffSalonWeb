@@ -29,64 +29,68 @@ export default function ProductsPage() {
     return initialProducts
       .filter((p) => (onlyLowStock ? p.stock < 10 : true))
       .filter((p) =>
-        q.length === 0
-          ? true
-          : `${p.name} ${p.category} ${p.price}`.toLowerCase().includes(q)
+        q.length === 0 ? true : `${p.name} ${p.category} ${p.price}`.toLowerCase().includes(q)
       );
   }, [query, onlyLowStock]);
 
   return (
-    <div className="space-y-6">
+    <main className="space-y-6">
       {/* Header */}
-      <div className="rounded-2xl border border-border bg-card/50 p-6">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+      <section className="rounded-2xl border border-border bg-card/50 p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>
-            <div className="flex items-center gap-2">
-              <div className="h-10 w-10 rounded-xl bg-accent-gold/15 border border-border/40 flex items-center justify-center">
-                <ShoppingBag className="h-5 w-5 text-accent-gold" />
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/40 bg-accent-gold/15">
+                <ShoppingBag className="h-5 w-5 text-accent-gold" aria-hidden="true" />
               </div>
-              <h2 className="text-2xl font-bold tracking-tight">Products</h2>
+              <h1 className="text-2xl font-bold tracking-tight">Products</h1>
             </div>
+
             <p className="mt-2 text-sm text-muted-foreground">
               Manage your store items, pricing, and inventory status.
             </p>
           </div>
 
-          <Button className="bg-accent-gold text-accent-gold-foreground hover:bg-accent-gold/90">
-            <Plus className="h-4 w-4" />
+          <Button className="gap-2 bg-accent-gold text-accent-gold-foreground hover:bg-accent-gold/90">
+            <Plus className="h-4 w-4" aria-hidden="true" />
             Add Product
           </Button>
         </div>
 
         {/* Controls */}
-        <div className="mt-5 flex flex-col md:flex-row gap-3">
+        <div className="mt-5 flex flex-col gap-3 md:flex-row md:items-center">
           <div className="flex items-center gap-2 rounded-xl border border-border bg-background/40 px-3 py-2">
-            <Search className="h-4 w-4 text-muted-foreground" />
+            <Search className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search products, category, price..."
-              className="w-full bg-transparent outline-none text-sm"
+              className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground/70"
+              aria-label="Search products"
+              type="text"
             />
           </div>
 
           <button
+            type="button"
             onClick={() => setOnlyLowStock((v) => !v)}
-            className={`inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2 text-sm transition-colors ${
+            aria-pressed={onlyLowStock}
+            className={[
+              "inline-flex items-center justify-center gap-2 rounded-xl border px-4 py-2 text-sm transition-colors",
               onlyLowStock
-                ? "border-destructive/40 text-destructive bg-destructive/10"
-                : "border-border text-muted-foreground bg-background/40 hover:bg-muted/20 hover:text-foreground"
-            }`}
+                ? "border-destructive/40 bg-destructive/10 text-destructive"
+                : "border-border bg-background/40 text-muted-foreground hover:bg-muted/20 hover:text-foreground",
+            ].join(" ")}
           >
-            <Filter className="h-4 w-4" />
+            <Filter className="h-4 w-4" aria-hidden="true" />
             Low stock only
           </button>
         </div>
-      </div>
+      </section>
 
       {/* Table */}
-      <div className="rounded-2xl border border-border bg-card/50 overflow-hidden">
-        <div className="grid grid-cols-12 px-5 py-3 text-xs text-muted-foreground border-b border-border">
+      <section className="overflow-hidden rounded-2xl border border-border bg-card/50">
+        <div className="grid grid-cols-12 border-b border-border px-5 py-3 text-xs text-muted-foreground">
           <div className="col-span-5">Product</div>
           <div className="col-span-3">Category</div>
           <div className="col-span-2">Price</div>
@@ -94,25 +98,24 @@ export default function ProductsPage() {
         </div>
 
         {products.length === 0 ? (
-          <div className="px-5 py-10 text-sm text-muted-foreground">
-            No products found.
-          </div>
+          <div className="px-5 py-10 text-sm text-muted-foreground">No products found.</div>
         ) : (
           products.map((p) => (
             <div
               key={p.id}
-              className="grid grid-cols-12 px-5 py-4 text-sm border-b border-border last:border-b-0 hover:bg-muted/20 transition-colors"
+              className="grid grid-cols-12 border-b border-border px-5 py-4 text-sm transition-colors hover:bg-muted/20 last:border-b-0"
             >
               <div className="col-span-5 font-medium">{p.name}</div>
               <div className="col-span-3 text-muted-foreground">{p.category}</div>
               <div className="col-span-2 text-muted-foreground">{p.price}</div>
               <div className="col-span-2">
                 <span
-                  className={`inline-flex items-center rounded-full px-2 py-1 text-xs border ${
+                  className={[
+                    "inline-flex items-center rounded-full border px-2 py-1 text-xs",
                     p.stock < 10
-                      ? "border-destructive/40 text-destructive bg-destructive/10"
-                      : "border-border text-muted-foreground bg-muted/10"
-                  }`}
+                      ? "border-destructive/40 bg-destructive/10 text-destructive"
+                      : "border-border bg-muted/10 text-muted-foreground",
+                  ].join(" ")}
                 >
                   {p.stock} in stock
                 </span>
@@ -120,12 +123,12 @@ export default function ProductsPage() {
             </div>
           ))
         )}
-      </div>
+      </section>
 
       {/* Footer note */}
-      <div className="text-xs text-muted-foreground">
+      <p className="text-xs text-muted-foreground">
         Tip: We can connect this to your real backend/API later. For now, it’s UI-only.
-      </div>
-    </div>
+      </p>
+    </main>
   );
 }
