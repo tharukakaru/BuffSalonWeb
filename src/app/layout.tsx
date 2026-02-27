@@ -1,9 +1,10 @@
 import "./globals.css";
 import Providers from "./providers";
 import type { Metadata } from "next";
+import { AuthProvider } from "@/context/auth";
 
 export const metadata: Metadata = {
-  title: "Lily Hair App",
+  title: "BUFF SALON",
   description: "Luxury salon booking & beauty platform",
 };
 
