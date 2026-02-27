@@ -27,7 +27,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-accent-gold to-accent-gold/70 flex items-center justify-center">
+          <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-accent-gold to-accent-gold/70 flex items-center justify-center"> 
             <Scissors className="h-4.5 w-4.5 text-background" strokeWidth={2} />
           </div>
           <span className="font-bold text-lg tracking-tight">BUFF SALON</span>
@@ -144,7 +144,7 @@ export default function Navbar() {
                       router.push("/login");
                     }}
                   >
-                    Sign In
+                    Sign in
                   </Button>
                   <Button
                     className="flex-1 bg-accent-gold text-accent-gold-foreground hover:bg-accent-gold/90"
