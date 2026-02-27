@@ -12,19 +12,30 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"customer" | "salon" | "stylist" | "event-stylist" | "vendor" | "admin">("customer");
+
+  const [role, setRole] = useState<
+    "customer" | "salon" | "stylist" | "event-stylist" | "vendor" | "admin"
+  >("customer");
+
+  const roleToRoute = {
+    customer: "/home",
+    salon: "/salon",
+    stylist: "/stylist",
+    "event-stylist": "/event-stylist",
+    vendor: "/vendor",
+    admin: "/admin",
+  } as const;
 
   const handleLogin = () => {
     if (!email || !password) return;
 
     login({ email, role });
-    router.push("/dashboard");
+    router.push(roleToRoute[role]);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-8">
-        {/* Logo + Title */}
         <div className="flex flex-col items-center mb-6">
           <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-accent-gold to-accent-gold/70 flex items-center justify-center mb-3">
             <Scissors className="h-6 w-6 text-background" />
@@ -35,9 +46,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Form */}
         <div className="space-y-4">
-          {/* Email */}
           <div>
             <label className="text-sm text-muted-foreground">Email</label>
             <input
@@ -49,7 +58,6 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Password */}
           <div>
             <label className="text-sm text-muted-foreground">Password</label>
             <input
@@ -61,7 +69,6 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Role Select */}
           <div>
             <label className="text-sm text-muted-foreground">Login As</label>
             <select
@@ -88,7 +95,6 @@ export default function LoginPage() {
             </select>
           </div>
 
-          {/* Sign In Button */}
           <Button
             className="w-full bg-accent-gold text-accent-gold-foreground hover:bg-accent-gold/90"
             onClick={handleLogin}
@@ -97,9 +103,8 @@ export default function LoginPage() {
           </Button>
         </div>
 
-        {/* Register link */}
         <div className="mt-6 text-center text-xs text-muted-foreground">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <span
             className="text-accent-gold cursor-pointer"
             onClick={() => router.push("/register")}
