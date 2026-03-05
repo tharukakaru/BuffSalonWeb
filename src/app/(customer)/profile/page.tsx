@@ -35,6 +35,21 @@ export default function ProfilePage() {
 
   const percent = Math.round((user.credits.used / user.credits.total) * 100);
 
+  const handleLogout = () => {
+    // Frontend-only logout: clear anything you may have stored
+    try {
+      localStorage.removeItem("buff_user");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      localStorage.removeItem("user");
+      localStorage.removeItem("auth");
+      sessionStorage.clear();
+    } catch {}
+
+    toast.success("Logged out");
+    router.push("/login"); // ✅ Navigate to login page
+  };
+
   return (
     <div className="px-4 py-6 md:px-8 md:py-8 max-w-5xl mx-auto space-y-5 pb-24">
       {/* Header */}
@@ -81,7 +96,10 @@ export default function ProfilePage() {
           </div>
 
           <div className="h-2 w-full rounded-full bg-secondary overflow-hidden">
-            <div className="h-full w-[--p] rounded-full bg-gradient-to-r from-accent-gold to-accent-gold/70" style={{ "--p": `${percent}%` } as any} />
+            <div
+              className="h-full w-[--p] rounded-full bg-gradient-to-r from-accent-gold to-accent-gold/70"
+              style={{ "--p": `${percent}%` } as any}
+            />
           </div>
 
           <div className="flex gap-2 pt-1">
@@ -153,11 +171,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Logout */}
-      <Button
-        variant="outline"
-        className="w-full h-11"
-        onClick={() => toast("Logout (frontend demo)")}
-      >
+      <Button variant="outline" className="w-full h-11" onClick={handleLogout}>
         <LogOut className="h-4 w-4 mr-2" /> Logout
       </Button>
     </div>

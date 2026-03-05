@@ -50,7 +50,7 @@ export default function RoleShell({
           {nav.map((item) => {
             const active =
               pathname === item.path || pathname?.startsWith(item.path + "/");
-            const Icon = item.icon;
+            const Icon = item.icon ?? LayoutDashboard;
 
             return (
               <button

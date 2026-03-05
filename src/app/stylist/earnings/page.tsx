@@ -1,10 +1,36 @@
-import RolePage from "@/components/role/RolePage";
+"use client";
+
+import PageLayout from "@/components/dashboard/PageLayout";
+import RowCard from "@/components/dashboard/RowCard";
+import { Wallet, TrendingUp } from "lucide-react";
+
+const payouts = [
+  { period: "This month", amount: "$3,240", status: "processing" },
+  { period: "Last month", amount: "$2,910", status: "paid" },
+];
 
 export default function StylistEarningsPage() {
   return (
-    <RolePage
-      title="Earnings"
-      subtitle="Track completed services and payouts."
-    />
+    <PageLayout title="Earnings" description="Track payouts and monthly income.">
+      <div className="grid gap-3">
+        {payouts.map((p) => (
+          <RowCard
+            key={p.period}
+            icon={Wallet}
+            title={p.period}
+            subtitle="Payout summary"
+            badge={{ text: p.status, tone: p.status === "paid" ? "success" : "gold" }}
+            right={
+              <div className="text-right">
+                <p className="text-sm font-semibold">{p.amount}</p>
+                <p className="text-[11px] text-muted-foreground inline-flex items-center gap-1">
+                  <TrendingUp className="h-3 w-3" /> trend
+                </p>
+              </div>
+            }
+          />
+        ))}
+      </div>
+    </PageLayout>
   );
 }

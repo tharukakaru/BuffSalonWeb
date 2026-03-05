@@ -45,12 +45,6 @@ export default function RolePage({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         <Card className="p-4 lg:col-span-2">
-          <p className="text-sm font-medium">UI placeholder (Frontend only)</p>
-          <p className="text-sm text-muted-foreground mt-1">
-            This page is wired and ready. You can replace this content with the final Lovable UI
-            anytime—route + layout + sidebar are already working.
-          </p>
-
           <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-2">
             {["Summary card", "Chart card", "Recent activity"].map((x) => (
               <div
@@ -62,29 +56,6 @@ export default function RolePage({
               </div>
             ))}
           </div>
-        </Card>
-
-        <Card className="p-4">
-          <div className="flex items-center gap-2">
-            <Info className="h-4 w-4 text-accent-gold" />
-            <p className="text-sm font-medium">Next steps</p>
-          </div>
-
-          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            {(tips.length
-              ? tips
-              : [
-                  "Confirm route renders with the role sidebar",
-                  "Hook real data later (Supabase/DB/API)",
-                  "Replace placeholder with Lovable UI components",
-                ]
-            ).map((t) => (
-              <li key={t} className="flex gap-2">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-accent-gold" />
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
         </Card>
       </div>
     </div>

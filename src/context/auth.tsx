@@ -29,7 +29,7 @@ const STORAGE_KEY = "buff_auth_user";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
 
-  // restore session (frontend only)
+  
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);

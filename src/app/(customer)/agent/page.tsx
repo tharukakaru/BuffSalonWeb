@@ -46,8 +46,7 @@ const workflowSteps = [
 
 const botReplies: Record<string, { content: string; card?: string }> = {
   "wedding next week": {
-    content:
-      "I'd love to help you plan your bridal look! Let me pull together some options.",
+    content: "I'd love to help you plan your bridal look! Let me pull together some options.",
     card: "workflow",
   },
   "hair falling out": {
@@ -162,7 +161,16 @@ export default function AgentPage() {
     };
 
     setTimeout(() => {
-      const finalMessages = [...nextMessages, { role: "assistant", ...reply }];
+      // ✅ FIX: Build a fully typed Message object (no spread that confuses TS)
+      const finalMessages: Message[] = [
+        ...nextMessages,
+        {
+          role: "assistant",
+          content: reply.content ?? "",
+          card: reply.card,
+        },
+      ];
+
       setMessages(finalMessages);
       setIsTyping(false);
       saveConversationSnapshot(finalMessages);
@@ -281,9 +289,7 @@ export default function AgentPage() {
             <div key={idx} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                  m.role === "user"
-                    ? "bg-accent-gold text-background"
-                    : "bg-secondary text-foreground"
+                  m.role === "user" ? "bg-accent-gold text-background" : "bg-secondary text-foreground"
                 }`}
               >
                 {m.content}
@@ -317,10 +323,7 @@ export default function AgentPage() {
                       Quick booking
                     </p>
                     <div className="grid grid-cols-2 gap-2">
-                      <Button
-                        size="sm"
-                        onClick={() => toast.success("Home visit preference saved (frontend demo)")}
-                      >
+                      <Button size="sm" onClick={() => toast.success("Home visit preference saved (frontend demo)")}>
                         Home Visit
                       </Button>
                       <Button
@@ -371,10 +374,17 @@ export default function AgentPage() {
             placeholder="Ask BUFF SALON AI..."
             className="flex-1 bg-transparent text-sm outline-none px-3 py-2 rounded-xl border border-border focus:border-accent-gold/40"
           />
-          <button type="button" className="h-8 w-8 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors" onClick={() => toast.info("Voice input")}>
+          <button
+            type="button"
+            className="h-8 w-8 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => toast.info("Voice input")}
+          >
             <Mic className="h-4 w-4" />
           </button>
-          <button type="submit" className="h-8 w-8 rounded-lg bg-accent-gold flex items-center justify-center text-background">
+          <button
+            type="submit"
+            className="h-8 w-8 rounded-lg bg-accent-gold flex items-center justify-center text-background"
+          >
             <Send className="h-4 w-4" />
           </button>
         </form>

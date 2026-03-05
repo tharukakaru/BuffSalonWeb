@@ -10,6 +10,8 @@ const nav: RoleNavItem[] = [
   { label: "Bookings", path: "/admin/bookings", icon: RoleIcons.Bookings },
   { label: "Revenue", path: "/admin/revenue", icon: RoleIcons.Earnings },
   { label: "Reports", path: "/admin/reports", icon: RoleIcons.Analytics },
+  { label: "Products", path: "/admin/products", icon: RoleIcons.Products },
+  { label: "AI Usage", path: "/admin/ai-usage", icon: RoleIcons.Analytics },
   { label: "Settings", path: "/admin/settings", icon: RoleIcons.Settings },
 ];
 

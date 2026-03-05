@@ -3,6 +3,7 @@ import RoleShell, { RoleIcons, RoleNavItem } from "@/components/layout/RoleShell
 const nav: RoleNavItem[] = [
   { label: "Dashboard", path: "/stylist", icon: RoleIcons.Dashboard },
   { label: "Home Visits", path: "/stylist/home-visits", icon: RoleIcons.Bookings },
+  { label: "Events", path: "/stylist/events", icon: RoleIcons.Bookings },
   { label: "Portfolio", path: "/stylist/portfolio", icon: RoleIcons.Services },
   { label: "Availability", path: "/stylist/availability", icon: RoleIcons.Bookings },
   { label: "Earnings", path: "/stylist/earnings", icon: RoleIcons.Earnings },
