@@ -12,8 +12,6 @@ const navLinks = [
   { label: "Home", path: "/" },
   { label: "Salons", path: "/salons" },
   { label: "Shop", path: "/shop" },
-  { label: "Products", path: "/products" },
-  { label: "Pricing", path: "/pricing" },
 ];
 
 export default function Navbar() {
@@ -21,7 +19,8 @@ export default function Navbar() {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const { isLoggedIn } = useAuth();
+  const { user } = useAuth();
+  const isLoggedIn = !!user;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
@@ -80,7 +79,7 @@ export default function Navbar() {
                 Sign In
               </Button>
               <Button
-                onClick={() => router.push("/register")}
+                onClick={() => router.push("/login")}
                 className="bg-accent-gold text-accent-gold-foreground hover:bg-accent-gold/90"
               >
                 Get Started
@@ -150,7 +149,7 @@ export default function Navbar() {
                     className="flex-1 bg-accent-gold text-accent-gold-foreground hover:bg-accent-gold/90"
                     onClick={() => {
                       setMobileOpen(false);
-                      router.push("/register");
+                      router.push("/login");
                     }}
                   >
                     Get Started

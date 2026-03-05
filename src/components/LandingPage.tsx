@@ -184,7 +184,7 @@ export default function LandingPage() {
                 Sign In
               </Button>
               <Button
-                onClick={() => router.push("/register")}
+                onClick={() => router.push("/login")}
                 className="flex-1 bg-accent-gold text-accent-gold-foreground text-sm"
               >
                 Get Started

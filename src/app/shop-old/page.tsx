@@ -33,12 +33,12 @@ type Product = {
 };
 
 const products: Product[] = [
-  { name: "Silk Repair Serum", brand: "GlowUp Pro", price: 2499, rating: 4.8, reviews: 142, aiPick: true, category: "Hair Care" },
+  { name: "Silk Repair Serum", brand: "BUFF Pro", price: 2499, rating: 4.8, reviews: 142, aiPick: true, category: "Hair Care" },
   { name: "Ceramic Curling Iron", brand: "StyleMaster", price: 6499, rating: 4.6, reviews: 98, aiPick: false, category: "Styling Tools" },
   { name: "Bridal Shine Spray", brand: "Luxe Locks", price: 1899, rating: 4.9, reviews: 76, aiPick: true, category: "Wedding" },
   { name: "Deep Moisture Mask", brand: "Natural Glow", price: 1599, rating: 4.7, reviews: 203, aiPick: false, category: "Hair Care" },
   { name: "Professional Blow Dryer", brand: "StyleMaster", price: 9999, rating: 4.5, reviews: 167, aiPick: false, category: "Professional" },
-  { name: "Argan Oil Treatment", brand: "GlowUp Pro", price: 3299, rating: 4.9, reviews: 312, aiPick: true, category: "Luxury" },
+  { name: "Argan Oil Treatment", brand: "BUFF Pro", price: 3299, rating: 4.9, reviews: 312, aiPick: true, category: "Luxury" },
 ];
 
 type CartItem = Product & { qty: number };

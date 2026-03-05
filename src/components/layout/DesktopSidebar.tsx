@@ -165,7 +165,7 @@ export default function DesktopSidebar() {
                 <div className="text-left min-w-0">
                   <p className="text-sm font-medium truncate">Sarah</p>
                   <p className="text-[11px] text-muted-foreground truncate">
-                    sarah@glowup.com
+                    sarah@BUFF.com
                   </p>
                 </div>
               )}
