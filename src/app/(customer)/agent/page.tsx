@@ -180,8 +180,8 @@ export default function AgentPage() {
   return (
     <div className="px-4 py-6 md:px-8 md:py-8 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between gap-3 mb-5">
-        <div>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-5">
+        <div className="min-w-0">
           <h1 className="text-xl font-semibold flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-accent-gold" />
             AI Agent
@@ -191,7 +191,7 @@ export default function AgentPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:justify-end">
           <Button variant="outline" className="h-10" onClick={() => setShowHistory(true)}>
             <History className="h-4 w-4 mr-2" /> History
           </Button>

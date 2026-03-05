@@ -2,7 +2,7 @@
 
 import PageLayout from "@/components/dashboard/PageLayout";
 import RowCard from "@/components/dashboard/RowCard";
-import { MapPin, Clock, User } from "lucide-react";
+import { Clock, User } from "lucide-react";
 
 const visits = [
   { client: "Emma Johnson", service: "Bridal Hair", date: "Mar 10", time: "10:00 AM", location: "Downtown Apartment", status: "confirmed" },
@@ -21,13 +21,12 @@ export default function StylistHomeVisitsPage() {
             subtitle={`${v.service} · ${v.location}`}
             badge={{ text: v.status, tone: v.status === "confirmed" ? "success" : "gold" }}
             right={
-              <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" /> {v.date} · {v.time}
-                </span>
-                <span className="flex items-center gap-1">
-                  <MapPin className="h-3 w-3" /> {v.location}
-                </span>
+              <div className="min-w-0 text-xs text-muted-foreground">
+                <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-3">
+                  <span className="flex items-center gap-1 whitespace-nowrap">
+                    <Clock className="h-3 w-3" /> {v.date} · {v.time}
+                  </span>
+                </div>
               </div>
             }
           />

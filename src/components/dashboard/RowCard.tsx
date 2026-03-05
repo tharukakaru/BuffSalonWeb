@@ -23,19 +23,19 @@ export default function RowCard({
       : "bg-secondary text-muted-foreground";
 
   return (
-    <div className="rounded-2xl border border-border bg-card p-4 flex items-center justify-between gap-3">
-      <div className="flex items-center gap-3 min-w-0">
+    <div className="rounded-2xl border border-border bg-card p-4 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center gap-3 min-w-0 w-full">
         {Icon ? (
           <div className="h-9 w-9 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
             <Icon className="h-4 w-4" />
           </div>
         ) : null}
 
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
+        <div className="min-w-0 w-full">
+          <div className="flex items-center gap-2 min-w-0">
             <p className="text-sm font-semibold truncate">{title}</p>
             {badge ? (
-              <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${badgeClass}`}>
+              <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${badgeClass} shrink-0`}>
                 {badge.text}
               </span>
             ) : null}
@@ -44,7 +44,11 @@ export default function RowCard({
         </div>
       </div>
 
-      {right ? <div className="flex-shrink-0">{right}</div> : null}
+      {right ? (
+        <div className="w-full sm:w-auto sm:flex-shrink-0">
+          {right}
+        </div>
+      ) : null}
     </div>
   );
 }

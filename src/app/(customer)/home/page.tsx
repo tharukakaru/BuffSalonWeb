@@ -84,111 +84,114 @@ export default function HomePage() {
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent-gold/3 rounded-full blur-[100px]" />
       </div>
 
-      <div className="relative z-10 px-4 py-8 md:px-12 md:py-16 max-w-5xl mx-auto">
-        {/* Hero Section */}
-        <motion.div variants={container} initial="hidden" animate="show" className="text-center mb-10 md:mb-14">
-          <motion.h1 variants={item} className="text-4xl md:text-6xl font-bold tracking-tight mb-3">
-            Create{" "}
-            <span className="relative inline-block">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={wordIndex}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="text-accent-gold"
-                >
-                  {heroWords[wordIndex]}
-                </motion.span>
-              </AnimatePresence>
-              <span className="text-accent-gold animate-pulse">_</span>
-            </span>
-          </motion.h1>
+      {/* MAIN WRAPPER: full width + reasonable max width on larger screens */}
+      <div className="relative z-10 w-full px-4 py-8 md:px-12 md:py-16">
+        <div className="w-full max-w-5xl mx-auto">
+          {/* Hero Section */}
+          <motion.div variants={container} initial="hidden" animate="show" className="text-center mb-10 md:mb-14">
+            <motion.h1 variants={item} className="text-4xl md:text-6xl font-bold tracking-tight mb-3">
+              Create{" "}
+              <span className="relative inline-block">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={wordIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="text-accent-gold"
+                  >
+                    {heroWords[wordIndex]}
+                  </motion.span>
+                </AnimatePresence>
+                <span className="text-accent-gold animate-pulse">_</span>
+              </span>
+            </motion.h1>
 
-          <motion.p variants={item} className="text-lg md:text-xl text-muted-foreground">
-            with <span className="font-semibold text-foreground">✨ Buff Salon</span>
-          </motion.p>
-        </motion.div>
-
-        {/* Search Bar */}
-        <motion.div variants={container} initial="hidden" animate="show" className="max-w-2xl mx-auto mb-12 md:mb-16">
-          <motion.div
-            variants={item}
-            className="rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-1.5 flex items-center gap-2 hover:border-accent-gold/30 transition-colors"
-          >
-            <div className="pl-3">
-              <Sparkles className="h-5 w-5 text-accent-gold/60" />
-            </div>
-
-            <input
-              type="text"
-              placeholder="What do you want to create today?"
-              className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none py-3 px-2"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") router.push("/agent");
-              }}
-            />
-
-            <div className="flex items-center gap-1.5 pr-1">
-              <button className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/60">
-                <Paperclip className="h-4 w-4" />
-              </button>
-              <button className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/60">
-                <Mic className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => router.push("/agent")}
-                className="flex items-center gap-1.5 bg-accent-gold text-accent-gold-foreground rounded-xl px-4 py-2 text-sm font-medium hover:bg-accent-gold/90 transition-colors"
-              >
-                Go <ArrowRight className="h-3.5 w-3.5" />
-              </button>
-            </div>
+            <motion.p variants={item} className="text-lg md:text-xl text-muted-foreground">
+              with <span className="font-semibold text-foreground">✨ Buff Salon</span>
+            </motion.p>
           </motion.div>
-        </motion.div>
 
-        {/* Feature Grid */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
-        >
-          {featureCards.map((card) => (
-            <motion.button
-              key={card.label}
+          {/* Search Bar */}
+          <motion.div variants={container} initial="hidden" animate="show" className="max-w-2xl mx-auto mb-12 md:mb-16">
+            <motion.div
               variants={item}
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => router.push(card.path)}
-              className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-5 flex flex-col items-center gap-3 hover:border-accent-gold/30 hover:bg-card/80 transition-all group"
+              className="rounded-2xl border border-border bg-card/60 backdrop-blur-sm p-1.5 flex flex-wrap sm:flex-nowrap items-center gap-2 hover:border-accent-gold/30 transition-colors"
             >
-              <div className="h-11 w-11 rounded-xl bg-accent-gold/10 flex items-center justify-center group-hover:bg-accent-gold/15 transition-colors">
-                <card.icon className="h-5 w-5 text-accent-gold" strokeWidth={1.6} />
+              <div className="pl-3 shrink-0">
+                <Sparkles className="h-5 w-5 text-accent-gold/60" />
               </div>
-              <div className="text-center">
-                <p className="font-medium text-sm">{card.label}</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">{card.desc}</p>
-              </div>
-            </motion.button>
-          ))}
-        </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="flex justify-center mt-12"
-        >
-          <motion.button
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="h-10 w-10 rounded-full border border-border bg-card/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-accent-gold/30 transition-colors"
+              <input
+                type="text"
+                placeholder="What do you want to create today?"
+                className="min-w-0 flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none py-3 px-2"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") router.push("/agent");
+                }}
+              />
+
+              <div className="flex items-center gap-1.5 pr-1 shrink-0">
+                <button className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/60">
+                  <Paperclip className="h-4 w-4" />
+                </button>
+                <button className="p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary/60">
+                  <Mic className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => router.push("/agent")}
+                  className="flex items-center gap-1.5 bg-accent-gold text-accent-gold-foreground rounded-xl px-4 py-2 text-sm font-medium hover:bg-accent-gold/90 transition-colors"
+                >
+                  Go <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Feature Grid */}
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
           >
-            <ChevronDown className="h-4 w-4" />
-          </motion.button>
-        </motion.div>
+            {featureCards.map((card) => (
+              <motion.button
+                key={card.label}
+                variants={item}
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => router.push(card.path)}
+                className="rounded-2xl border border-border bg-card/50 backdrop-blur-sm p-4 sm:p-5 flex flex-col items-center gap-3 hover:border-accent-gold/30 hover:bg-card/80 transition-all group"
+              >
+                <div className="h-11 w-11 rounded-xl bg-accent-gold/10 flex items-center justify-center group-hover:bg-accent-gold/15 transition-colors">
+                  <card.icon className="h-5 w-5 text-accent-gold" strokeWidth={1.6} />
+                </div>
+                <div className="text-center">
+                  <p className="font-medium text-sm">{card.label}</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">{card.desc}</p>
+                </div>
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+            className="flex justify-center mt-12"
+          >
+            <motion.button
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="h-10 w-10 rounded-full border border-border bg-card/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-accent-gold/30 transition-colors"
+            >
+              <ChevronDown className="h-4 w-4" />
+            </motion.button>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
