@@ -3,6 +3,11 @@ import Providers from "./providers";
 import type { Metadata } from "next";
 import { AuthProvider } from "@/context/auth";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "BUFF SALON",
   description: "Luxury salon booking & beauty platform",
